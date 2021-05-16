@@ -12,6 +12,7 @@ The Azure App Service is great for that because it focuses more on the applicati
 - Manual or automatic scaling according to the pricing plan.
 
 ### Prerequisites
+---
 
 Apart from Azure subscription:  
 
@@ -24,10 +25,12 @@ Apart from Azure subscription:
 - **SonarQube image** running in the container.
 
 ### Deployment design
+---
 
 The Docker compose file of the solution consists of the SonarQube service exposing the port 9000, and an internal non-public SQL server service on the default port 1433. For data persistence, we use mounting volumes on Azure File Share that we will associate with the web app.
 
 ### 1. STEP: Azure Services
+---
 
 First deploy Azure services, either via Azure CLI or using Azure Portal, so the **resource group** will host:
 
@@ -35,6 +38,7 @@ First deploy Azure services, either via Azure CLI or using Azure Portal, so the 
 - Azure App Service (Docker container and Linux O/S). We will use Docker compose.
 
 ### 2. STEP: Azure File Share
+---
 
 On Azure Storage, add below folders to Azure File Share:
 - mssql
@@ -44,6 +48,7 @@ On Azure Storage, add below folders to Azure File Share:
 - sonarqube-bundled-plugins
 
 ### 3. STEP: Azure App Service
+---
 
 On Azure App Service, in the configuration, add below mappings:
 
@@ -56,10 +61,11 @@ On Azure App Service, in the configuration, add below mappings:
 | sonarqube-bundled-plugins | /opt/sonarqube/lib/bundled-plugins
 
 ### 4. STEP: SQL Database
+---
 
-The unusual step, we must initialize database manually in the Docker (development machine) and move files to Azure File Share (mssql folder). This unfortunately, cannot be done automatically when Docker starts.
+The unusual step, we must initialize database manually in the Docker (local machine) and move files to Azure File Share (`mssql` folder). This unfortunately, cannot be done automatically when Docker starts.
 
-First step is deploying Microsoft SQL Server, docker-compose script:
+First step is to deploy Microsoft SQL Server, docker-compose script:
 
 ```yaml
 version: "3"
@@ -100,6 +106,7 @@ Next step is to go to the console and copy `mssql` folder from Docker to local m
 Upload just two folders `.system` and `data` into `mssql` folder on the Azure File Share.
 
 ### 5. STEP: Running SonarQube
+---
 
 Last step is to enable Docker Compose in Azure App Service and save the below script:
 
@@ -149,5 +156,12 @@ volumes:
     external: true
 ```
 
-**Important note**: please keep the same database name and password. Also, it is important to use `-Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false` and `SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true` to prevent from Elasticsearch `max virtual memory` error.
+### End note
+---
 
+Please keep the same database name and password. Also, it is important to use:
+
+- `-Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false`,
+- `SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true`,
+ 
+to prevent from Elasticsearch `max virtual memory` error.
