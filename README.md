@@ -4,7 +4,7 @@ SonarQube is an open-source platform developed by SonarSource for continuous ins
 
 SonarQube server is available here: [Install the Server](https://docs.sonarqube.org/latest/setup/install-server/). SonarSource provides examples using a traditional installation with the zip file or Docker container using one of Docker images.
 
-However, for a real world scenario I wanted to have SonarQube deployed on Azure Service App with SQL Database instance. A serverless approach with minimum maintenance. 
+However, in a real world scenario I wanted to have SonarQube deployed on Azure Service App with SQL Database instance. A serverless approach with minimum maintenance. 
 
 The Azure App Service is great for that because it focuses more on the application rather than the operational maintenance of the infrastructure. It provides by default:
 - An SSL / TLS termination provided with the App service plan.
@@ -156,12 +156,14 @@ volumes:
     external: true
 ```
 
+**Note**: please keep the same database name and password.
+
 ### End note
 ---
 
-Please keep the same database name and password. Also, it is important to use:
+To prevent from `max virtual memory` error, it is important to use:
 
 - `-Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false`,
-- `SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true`,
- 
-to prevent from Elasticsearch `max virtual memory` error.
+- `SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true`.
+
+After SonarQube is up an running, login with Admin/Admin credentials and change admin password.
