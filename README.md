@@ -166,4 +166,4 @@ To prevent from `max virtual memory` error, it is important to use:
 - `-Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false`,
 - `SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true`.
 
-After SonarQube is up an running, login with Admin/Admin credentials and change admin password.
+After SonarQube is up an running, login with `admin`/`admin` credentials and change admin password.
