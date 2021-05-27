@@ -25,7 +25,7 @@ Apart from Azure subscription:
 
 ## Deployment design
 
-The Docker compose file of the solution consists of the SonarQube service exposing the port 9000. For data persistence, we use mounting volumes on Azure File Share that we will associate with the web app. We use externa SQL database, hosted on Azure.
+The Docker compose file of the solution consists of the SonarQube service exposing the port 9000. For data persistence, we use mounting volumes on Azure File Share that we will associate with the web app. We use external SQL database, hosted on Azure.
 
 ## 1. STEP: Azure Services
 
