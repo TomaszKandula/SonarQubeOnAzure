@@ -129,3 +129,9 @@ To prevent from `max virtual memory` error we must disable use of memory mapping
 - `SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true`.
 
 After SonarQube is up and running, log in with `admin`/`admin` credentials and change the admin password.
+
+Additionally, one can navigate to below address to quick check installed plugins:
+
+`https://<your_app_name>.azurewebsites.net/api/plugins/installed`
+
+For SonarQube 8.9 LTS, there should be around 15 plugins installed by default (C#, JavaScript, Kotlin, PHP among others). Other plugins can be easily added, just go to Administration -> Marketplace.
