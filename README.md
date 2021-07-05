@@ -122,7 +122,7 @@ volumes:
      external: true
 ```
 
-**Note**: because SonarQube will migrate the database, the first run may take some time. Azure SQL Database and basic tier usually take a few minutes for the application to take off.
+**Note**: because SonarQube will migrate the database, the first run may take some time. From my experience: SonarQube application that uses Azure SQL Database on basic tier usually take a few minutes to take off.
 
 To prevent from `max virtual memory` error we must disable use of memory mapping in ElasticSearch, thus we use the following options:
 
