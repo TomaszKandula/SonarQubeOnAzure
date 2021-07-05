@@ -1,19 +1,20 @@
 # SonarQube on Azure
 
-SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static code analysis to detect bugs, code smells, and security vulnerabilities on 20+ programming languages. 
+SonarQube is a SonarSource platform for continuous inspection of code quality to perform automatic reviews with static code analysis to detect various bugs, code smells, and security vulnerabilities on 20+ programming languages. 
 
 SonarQube server is available here: [Install the Server](https://docs.sonarqube.org/latest/setup/install-server/). SonarSource provides examples using a standard installation with the zip file or Docker container using Docker images.
 
-**However, I wanted to have SonarQube deployed on Azure Service App with Azure SQL Database instance (a real-world scenario). A serverless approach with minimum maintenance.**
+However, I wanted to have SonarQube deployed on Azure Service App with Azure SQL Database instance (a real-world scenario). A serverless approach with minimum maintenance. For once, I am accustomed to Azure, I have used it for a very long time, so this would be my natural choice.
 
-The Azure App Service is excellent because it focuses more on the application rather than the operational maintenance of the infrastructure. It provides by default:
-- An SSL / TLS termination provided with the App service plan.
-- A shared storage space that can reach 250 GB.
-- Manual or automatic scaling according to the pricing plan.
+Furthermore, the Azure App Service is excellent because it focuses more on the application than the infrastructure’s operational maintenance. It provides by default:
+
+1. An SSL / TLS termination provided with the App service plan.
+1. It has a shared storage space that can reach 250 GB.
+1. Manual or automatic scaling according to the pricing plan.
 
 ## Prerequisites
 
-Apart from Azure subscription:  
+Apart from Azure subscription:
 
 - **Azure Resource Group** to host service plan, service plan and storage.
 - **Azure Service Plan** for Azure App Service.
@@ -25,26 +26,28 @@ Apart from Azure subscription:
 
 ## Deployment design
 
-The Docker compose file of the solution consists of the SonarQube service exposing the port 9000. For data persistence, we use mounting volumes on Azure File Share that we will associate with the web app. We use external SQL database, hosted on Azure.
+The Docker compose file of the solution consists of the SonarQube service exposing the port 9000.
 
-## 1. STEP: Azure Services
+We will use mounting volumes on Azure File Share and an external SQL database hosted on Azure for data persistence.
 
-First deploy Azure services, either via Azure CLI or using Azure Portal, so the **resource group** will host:
+## STEP 1: Azure Services
+
+First deploy Azure services, either via Azure CLI or using Azure Portal, so that the **resource group** will host:
 
 - Azure Service Plan (at least B2 pricing tier).
 - Azure App Service (Docker container and Linux O/S) - we will use Docker compose.
 - Azure Storage (LSR / StorageV2 will be OK).
 - Azure SQL Server and database (basic tier will suffice).
 
-## 2. STEP: Azure File Share
+## STEP 2: Azure File Share
 
-On Azure Storage, add below folders to Azure File Share:
+On Azure Storage, add the below **folders** to Azure File Share:
 - sonarqube-conf
 - sonarqube-data
 - sonarqube-extensions
 - sonarqube-bundled-plugins
 
-## 3. STEP: Azure App Service
+## STEP 3: Azure App Service
 
 On Azure App Service, in the configuration, add below mappings:
 
@@ -55,9 +58,9 @@ On Azure App Service, in the configuration, add below mappings:
 | sonarqube-extensions | /opt/sonarqube/extensions
 | sonarqube-bundled-plugins | /opt/sonarqube/lib/bundled-plugins
 
-## 4. STEP: SQL Database
+## STEP 4: SQL Database
 
-Setup Azure SQL server and add SQL Database. A basic tier with 2 GB storage will suffice. Use connection string for JDBC; however, please do not place username and password in the given connection string. Credentials should be passed via environment variables in Docker compose a script. 
+Setup Azure SQL server and add SQL Database. A basic tier with 2 GB storage will suffice. Use connection string for JDBC; however, please do not place username and password in the given connection string. Credentials should be passed via environment variables in Docker compose a script.
 
 Once the database is setup, create login and user, and assign permissions, for example:
 
@@ -66,7 +69,7 @@ Execute on master only:
 CREATE LOGIN SonarAccess WITH PASSWORD = '<password>';
 ```
 
-Note: Password must comply with [Password policy in Azure AD](https://docs.microsoft.com/en-us/previous-versions/azure/jj943764(v=azure.100)).
+**Note**: Password must comply with [Password policy in Azure AD](https://docs.microsoft.com/en-us/previous-versions/azure/jj943764(v=azure.100)).
 
 Execute on target database:
 ```sql
@@ -84,9 +87,9 @@ GRANT UPDATE on schema::dbo to SonarAccess
 GRANT REFERENCES on schema::dbo to SonarAccess
 ```
 
-## 5. STEP: Running SonarQube
+## STEP 5: Running SonarQube
 
-Last step is to enable Docker Compose in Azure App Service and save the below script:
+The last step is to enable Docker Compose in Azure App Service and save the below script:
 
 ```yaml
 version: "3"
@@ -119,19 +122,29 @@ volumes:
      external: true
 ```
 
-**Note**: first run may take some time as the SonarQube will migrate database. In case of Azure SQL Database and basic tier, it took few minutes for application to take off.
-
-## End note
+**Note**: because SonarQube will migrate the database, the first run may take some time. Azure SQL Database and basic tier usually take a few minutes for the application to take off.
 
 To prevent from `max virtual memory` error we must disable use of memory mapping in ElasticSearch, thus we use the following options:
 
 - `-Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmap=false`,
 - `SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true`.
 
-After SonarQube is up and running, log in with `admin`/`admin` credentials and change the admin password.
+## STEP 6: First login
 
-Additionally, one can navigate to below address to quick check installed plugins:
+After SonarQube is up and running, log in with:
+
+- login: `admin`,
+- password: `admin`.
+
+And change the admin password so nobody else will log in to your SonarQube service. Additionally, one can navigate to the below address to quick check installed plugins:
 
 `https://<your_app_name>.azurewebsites.net/api/plugins/installed`
 
-For SonarQube 8.9 LTS, there should be around 15 plugins installed by default (C#, JavaScript, Kotlin, PHP among others). Other plugins can be easily added, just go to Administration -> Marketplace.
+For SonarQube 8.9 LTS, there should be around 15 plugins installed by default:
+- C#,
+- JavaScript,
+- Kotlin,
+- PHP (among others).
+
+Other plugins can be easily added; just go to Administration -> Marketplace.
+
