@@ -19,7 +19,7 @@ Apart from Azure subscription:
 - **Azure Resource Group** to host service plan, service plan and storage.
 - **Azure Service Plan** for Azure App Service.
 - **Azure App Service on Linux** to host serverless environment.
-- **Azure Storage** to host SQL Database.
+- **Azure Storage** to host SonarQube files.
 - **SQL Server** hosted on Azure.
 - **SQL Database** hosted on Azure.
 - **SonarQube image** running in the container.
