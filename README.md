@@ -44,6 +44,7 @@ First deploy Azure services, either via Azure CLI or using Azure Portal, so that
 On Azure Storage, add the below **folders** to Azure File Share:
 - sonarqube-conf
 - sonarqube-data
+- sonarqube-logs
 - sonarqube-extensions
 - sonarqube-bundled-plugins
 
@@ -51,12 +52,13 @@ On Azure Storage, add the below **folders** to Azure File Share:
 
 On Azure App Service, in the configuration, add below mappings:
 
-| Azure File Share | Mount path
-|---|---
-| sonarqube-conf | /opt/sonarqube/conf
-| sonarqube-data | /opt/sonarqube/data
-| sonarqube-extensions | /opt/sonarqube/extensions
-| sonarqube-bundled-plugins | /opt/sonarqube/lib/bundled-plugins
+| Azure File Share | Mount path |
+|---|--- |
+| sonarqube-conf | /opt/sonarqube/conf |
+| sonarqube-data | /opt/sonarqube/data |
+| sonarqube-logs | /opt/sonarqube/logs |
+| sonarqube-extensions | /opt/sonarqube/extensions |
+| sonarqube-bundled-plugins | /opt/sonarqube/lib/bundled-plugins |
 
 ## STEP 4: SQL Database
 
