@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Models;
-using Services.Caching.Metrics;
+using Services.CachingService.Metrics;
 
 [ApiController]
 [ApiVersion("1.0")]

@@ -1,8 +1,8 @@
-namespace SonarQubeProxy.Services.Caching;
+namespace SonarQubeProxy.Services.CachingService;
 
 using System.Threading.Tasks;
 
-public interface IRedisDistributedCache
+public interface ICachingService
 {
     /// <summary>
     /// Calls the data we want to cache.
