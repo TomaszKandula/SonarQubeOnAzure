@@ -1,4 +1,4 @@
-namespace SonarQubeProxy.Services.Caching.Metrics;
+namespace SonarQubeProxy.Services.CachingService.Metrics;
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
