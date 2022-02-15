@@ -1,4 +1,4 @@
-namespace SonarQubeProxy.Services.Caching;
+namespace SonarQubeProxy.Services.CachingService;
 
 using System;
 using System.Threading.Tasks;
@@ -11,13 +11,13 @@ using Resources;
 using Newtonsoft.Json;
 
 [ExcludeFromCodeCoverage]
-public class RedisDistributedCache : IRedisDistributedCache
+public class CachingService : ICachingService
 {
     private readonly IDistributedCache _distributedCache;
 
     private readonly AzureRedis _azureRedis;
 
-    public RedisDistributedCache(IDistributedCache distributedCache, AzureRedis azureRedis)
+    public CachingService(IDistributedCache distributedCache, AzureRedis azureRedis)
     {
         _distributedCache = distributedCache;
         _azureRedis = azureRedis;

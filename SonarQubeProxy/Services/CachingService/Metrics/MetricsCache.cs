@@ -1,4 +1,4 @@
-namespace SonarQubeProxy.Services.Caching.Metrics;
+namespace SonarQubeProxy.Services.CachingService.Metrics;
 
 using System;
 using System.Net;
@@ -19,7 +19,7 @@ using HttpClientService.Authentication;
 [ExcludeFromCodeCoverage]
 public class MetricsCache : IMetricsCache
 {
-    private readonly IRedisDistributedCache _redisDistributedCache;
+    private readonly ICachingService _cachingService;
 
     private readonly IHttpClientService _httpClientService;
 
@@ -27,11 +27,11 @@ public class MetricsCache : IMetricsCache
 
     private readonly SonarQube _sonarQube;
 
-    public MetricsCache(IHttpClientService httpClientService, IRedisDistributedCache redisDistributedCache, 
+    public MetricsCache(IHttpClientService httpClientService, ICachingService cachingService, 
         ILoggerService loggerService, SonarQube sonarQube)
     {
         _httpClientService = httpClientService;
-        _redisDistributedCache = redisDistributedCache;
+        _cachingService = cachingService;
         _loggerService = loggerService;
         _sonarQube = sonarQube;
     }
@@ -49,11 +49,11 @@ public class MetricsCache : IMetricsCache
         if (noCache)
             return await ExecuteRequest(requestUrl);
 
-        var value = await _redisDistributedCache.GetObjectAsync<FileContentResult>(key);
+        var value = await _cachingService.GetObjectAsync<FileContentResult>(key);
         if (value is not null) return value;
 
         value = await ExecuteRequest(requestUrl);
-        await _redisDistributedCache.SetObjectAsync(key, value);
+        await _cachingService.SetObjectAsync(key, value);
 
         return value;
     }
@@ -69,11 +69,11 @@ public class MetricsCache : IMetricsCache
         if (noCache)
             return await ExecuteRequest(requestUrl);
 
-        var value = await _redisDistributedCache.GetObjectAsync<FileContentResult>(project);
+        var value = await _cachingService.GetObjectAsync<FileContentResult>(project);
         if (value is not null) return value;
 
         value = await ExecuteRequest(requestUrl);
-        await _redisDistributedCache.SetObjectAsync(project, value);
+        await _cachingService.SetObjectAsync(project, value);
 
         return value;
     }
