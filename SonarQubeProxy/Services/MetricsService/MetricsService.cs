@@ -1,6 +1,5 @@
-namespace SonarQubeProxy.Services.CachingService.Metrics;
+namespace SonarQubeProxy.Services.MetricsService;
 
-using System;
 using System.Net;
 using System.Text;
 using System.Linq;
@@ -17,26 +16,22 @@ using HttpClientService;
 using HttpClientService.Authentication;
 
 [ExcludeFromCodeCoverage]
-public class MetricsCache : IMetricsCache
+public class MetricsService : IMetricsService
 {
-    private readonly ICachingService _cachingService;
-
     private readonly IHttpClientService _httpClientService;
 
     private readonly ILoggerService _loggerService;
 
     private readonly SonarQube _sonarQube;
 
-    public MetricsCache(IHttpClientService httpClientService, ICachingService cachingService, 
-        ILoggerService loggerService, SonarQube sonarQube)
+    public MetricsService(IHttpClientService httpClientService, ILoggerService loggerService, SonarQube sonarQube)
     {
         _httpClientService = httpClientService;
-        _cachingService = cachingService;
         _loggerService = loggerService;
         _sonarQube = sonarQube;
     }
 
-    public async Task<IActionResult> GetMetrics(string project, string metric, bool noCache = false)
+    public async Task<IActionResult> GetMetrics(string project, string metric)
     {
         ValidateArguments(new Dictionary<string, string>
         {
@@ -44,21 +39,11 @@ public class MetricsCache : IMetricsCache
             [nameof(metric)] = metric
         });
 
-        var key = $"{project}/{metric}";
         var requestUrl = $"{_sonarQube.Server}/api/project_badges/measure?project={project}&metric={metric}";
-        if (noCache)
-            return await ExecuteRequest(requestUrl);
-
-        var value = await _cachingService.GetObjectAsync<FileContentResult>(key);
-        if (value is not null) return value;
-
-        value = await ExecuteRequest(requestUrl);
-        await _cachingService.SetObjectAsync(key, value);
-
-        return value;
+        return await ExecuteRequest(requestUrl);
     }
 
-    public async Task<IActionResult> GetQualityGate(string project, bool noCache = false)
+    public async Task<IActionResult> GetQualityGate(string project)
     {
         ValidateArguments(new Dictionary<string, string>
         {
@@ -66,16 +51,7 @@ public class MetricsCache : IMetricsCache
         });
             
         var requestUrl = $"{_sonarQube.Server}/api/project_badges/quality_gate?project={project}";
-        if (noCache)
-            return await ExecuteRequest(requestUrl);
-
-        var value = await _cachingService.GetObjectAsync<FileContentResult>(project);
-        if (value is not null) return value;
-
-        value = await ExecuteRequest(requestUrl);
-        await _cachingService.SetObjectAsync(project, value);
-
-        return value;
+        return await ExecuteRequest(requestUrl);
     }
 
     private static void ValidateArguments(IDictionary<string, string> properties)
@@ -122,6 +98,6 @@ public class MetricsCache : IMetricsCache
             : Encoding.Default.GetString(results.Content);
 
         _loggerService.LogError($"Received null content with status code: {results.StatusCode}");
-        throw new Exception(message);
+        throw new BusinessException(message);
     }
 }

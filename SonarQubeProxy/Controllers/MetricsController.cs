@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Services.MetricsService;
 using Models;
-using Services.CachingService.Metrics;
 
 [ApiController]
 [ApiVersion("1.0")]
@@ -18,9 +18,9 @@ using Services.CachingService.Metrics;
 [ProducesResponseType(typeof(ApplicationError), StatusCodes.Status500InternalServerError)]
 public class Metrics : ControllerBase
 {
-    private readonly IMetricsCache _metricsCache;
+    private readonly IMetricsService _metricsService;
 
-    public Metrics(IMetricsCache metricsCache) => _metricsCache = metricsCache;
+    public Metrics(IMetricsService metricsService) => _metricsService = metricsService;
 
     /// <summary>
     /// Returns badge from SonarQube server for given project name and metric type.
@@ -32,8 +32,8 @@ public class Metrics : ControllerBase
     /// <returns>SonarQube badge</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetMetrics([FromQuery] string project, string metric, bool noCache = false)
-        => await _metricsCache.GetMetrics(project, metric, noCache);
+    public async Task<IActionResult> GetMetrics([FromQuery] string project, string metric)
+        => await _metricsService.GetMetrics(project, metric);
 
     /// <summary>
     /// Returns large quality gate badge from SonarQube server for given project name.
@@ -43,6 +43,6 @@ public class Metrics : ControllerBase
     /// <returns>SonarQube badge</returns>
     [HttpGet("Quality")]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetQualityGate([FromQuery] string project, bool noCache = false)
-        => await _metricsCache.GetQualityGate(project, noCache);
+    public async Task<IActionResult> GetQualityGate([FromQuery] string project)
+        => await _metricsService.GetQualityGate(project);
 }
