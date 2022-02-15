@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.1.0...v1.2.0) (2022-02-15)
+
+
+### Features
+
+* remove Redis Cache ([3a04443](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/3a04443c4d9b280e68e9ab2e2ddc5ad52ff8a1e4))
+* remove Redis from settings ([0629bde](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/0629bde76a2b1ae3dcfb8b4919c1593709a3f5e1))
+
 # [1.1.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.0.0...v1.1.0) (2022-02-15)
 
 
