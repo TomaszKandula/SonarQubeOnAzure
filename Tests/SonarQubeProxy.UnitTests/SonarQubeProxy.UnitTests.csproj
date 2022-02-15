@@ -2,9 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
-
+        <LangVersion>10</LangVersion>
         <IsPackable>false</IsPackable>
+        <IsPublishable>false</IsPublishable>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
