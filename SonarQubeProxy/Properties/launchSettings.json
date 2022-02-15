@@ -1,26 +1,34 @@
 ﻿{
-  "iisSettings": {
+  "iisSettings": 
+  {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iisExpress": {
+    "iisExpress": 
+    {
       "applicationUrl": "http://localhost:64498",
       "sslPort": 44310
     }
   },
-  "profiles": {
-    "SonarQubeProxy": {
+  "profiles": 
+  {
+    "SonarQubeProxy": 
+    {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7192;http://localhost:5209",
-      "environmentVariables": {
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5020",
+      "environmentVariables": 
+      {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "IIS Express": {
+    "IIS Express": 
+    {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "environmentVariables": {
+      "environmentVariables": 
+      {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
