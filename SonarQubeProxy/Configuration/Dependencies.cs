@@ -25,7 +25,6 @@ public static class Dependencies
 
 	private static void SetupAppSettings(IServiceCollection services, IConfiguration configuration) 
 	{
-		services.AddSingleton(configuration.GetSection(nameof(AzureRedis)).Get<AzureRedis>());
 		services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
 		services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
 	}

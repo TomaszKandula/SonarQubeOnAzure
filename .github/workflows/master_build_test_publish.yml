@@ -59,10 +59,6 @@ jobs:
       env:
         SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
         SonarQube.Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
-        AzureRedis.InstanceName: "${{ secrets.AZURE_REDIS_INSTANCE_NAME }}"
-        AzureRedis.ConnectionString: "${{ secrets.AZURE_REDIS_CONNECTION_STRING }}"
-        AzureRedis.ExpirationMinute: "${{ secrets.AZURE_REDIS_EXPIRATIONMINUTE }}"
-        AzureRedis.ExpirationSecond: "${{ secrets.AZURE_REDIS_EXPIRATIONSECOND }}"
         ApplicationPaths.DevelopmentOrigin: "${{ secrets.APPLICATIONPATHS_DEVELOPMENTORIGIN }}"
         ApplicationPaths.DeploymentOrigin: "${{ secrets.APPLICATIONPATHS_DEPLOYMENTORIGIN }}"
 
