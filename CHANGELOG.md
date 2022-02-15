@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.0.0...v1.1.0) (2022-02-15)
+
+
+### Features
+
+* lunch Swagger UI when projects run in dev mode ([dcdd3af](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/dcdd3afdf730894987c5a87a9b364e9f409b82a3))
+
 # 1.0.0 (2022-02-15)
 
 
