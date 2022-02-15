@@ -105,6 +105,7 @@ services:
     volumes:
       - sonarqube-conf:/opt/sonarqube/conf
       - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-logs:/opt/sonarqube/logs
       - sonarqube-extensions:/opt/sonarqube/extensions
       - sonarqube-bundled-plugins:/opt/sonarqube/lib/bundled-plugins
     environment:
@@ -117,6 +118,8 @@ volumes:
   sonarqube-conf:
      external: true
   sonarqube-data:
+     external: true
+  sonarqube-logs:
      external: true
   sonarqube-extensions:
      external: true
