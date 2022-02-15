@@ -7,9 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Models;
-using Services.CachingService;
 using Services.LoggerService;
-using Services.CachingService.Metrics;
+using Services.MetricsService;
 using Services.HttpClientService;
 
 [ExcludeFromCodeCoverage]
@@ -38,9 +37,8 @@ public static class Dependencies
 	{
 		services.AddHttpContextAccessor();
 		services.AddScoped<HttpClient>();
-		services.AddScoped<IMetricsCache, MetricsCache>();
+		services.AddScoped<IMetricsService, MetricsService>();
 		services.AddScoped<IHttpClientService, HttpClientService>();
-		services.AddScoped<ICachingService, CachingService>();
 	}
 
 	private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment)
