@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.3.0...v1.4.0) (2022-03-05)
+
+
+### Features
+
+* initialize with default value ([897deb6](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/897deb6337cc42bc58714f7cbb9d50e5e0923ba7))
+* remove unused redis ([cd8fe22](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/cd8fe2257f3cdb3652fca5881101b7f6b49f0164))
+
 # [1.3.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.2.0...v1.3.0) (2022-02-15)
 
 
