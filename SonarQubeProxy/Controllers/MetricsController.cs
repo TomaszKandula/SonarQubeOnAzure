@@ -28,7 +28,6 @@ public class Metrics : ControllerBase
     /// </summary>
     /// <param name="project">SonarQube analysis project name</param>
     /// <param name="metric">SonarQube metric type</param>
-    /// <param name="noCache">Allows to disable response cache.</param>
     /// <returns>SonarQube badge</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
@@ -39,7 +38,6 @@ public class Metrics : ControllerBase
     /// Returns large quality gate badge from SonarQube server for given project name.
     /// </summary>
     /// <param name="project">SonarQube analysis project name</param>
-    /// <param name="noCache">Allows to disable response cache.</param>
     /// <returns>SonarQube badge</returns>
     [HttpGet("Quality")]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
