@@ -39,7 +39,6 @@ public class Startup
         });
         services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
         services.RegisterDependencies(_configuration, _environment);
-        services.SetupRedisCache(_configuration);
         services.SetupSwaggerOptions(_environment);
         services.SetupDockerInternalNetwork();
     }
