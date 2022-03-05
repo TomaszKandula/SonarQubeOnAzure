@@ -12,6 +12,29 @@ Furthermore, the Azure App Service is excellent because it focuses more on the a
 1. It has a shared storage space that can reach 250 GB.
 1. Manual or automatic scaling according to the pricing plan.
 
+## Proxy API to SonarQube API
+
+Additionally, a [NET 6 application](https://github.com/TomaszKandula/SonarQubeOnAzure/tree/master/SonarQubeProxy) serves as a proxy to SonarQube API. Having _man-in-the-middle_ is to abstract away SonarQube API, so users do not have to query SonarQube API directly using the secret key in the request.
+
+The web application requires Docker, and currently we deploy it to the Azure App Service via CI/CD. Production requires merging a code to the master branch. SonarQube code analysis is trigerred when a code is merged from the custom branch to the development branch (dev).
+
+There are two endpoints:
+1. GetMetrics - returns badge from SonarQube server for given project name and metric type. All badges have the same style.
+2. GetQualityGate - returns large quality gate badge from SonarQube server for given project name.
+
+List of metric types:
+1. bugs
+1. code_smells
+1. coverage
+1. duplicated_lines_density
+1. ncloc
+1. sqale_rating
+1. alert_status
+1. reliability_rating
+1. security_rating
+1. sqale_index
+1. vulnerabilities
+
 ## Prerequisites
 
 Apart from Azure subscription:
