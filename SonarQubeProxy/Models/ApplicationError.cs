@@ -13,11 +13,12 @@ public sealed class ApplicationError
     public string ErrorMessage { get; set; }
 
     public string ErrorInnerMessage { get; set; }
-        
+
     public IEnumerable<ValidationError> ValidationErrors { get; set; }
 
     public ApplicationError(string errorCode, string errorMessage, string errorInnerMessage = "")
     {
+        ValidationErrors = new List<ValidationError>();
         ErrorCode = errorCode;
         ErrorMessage = errorMessage;
         ErrorInnerMessage = errorInnerMessage;
