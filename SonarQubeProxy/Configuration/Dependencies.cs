@@ -3,7 +3,6 @@
 namespace SonarQubeProxy.Configuration;
 
 using System;
-using System.Net.Http;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,9 +28,8 @@ public static class Dependencies
 	private static void SetupServices(IServiceCollection services) 
 	{
 		services.AddHttpContextAccessor();
-		services.AddScoped<HttpClient>();
+		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 		services.AddScoped<IMetricsService, MetricsService>();
-		services.AddScoped<IHttpClientService, HttpClientService>();
 	}
 
 	private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment)
