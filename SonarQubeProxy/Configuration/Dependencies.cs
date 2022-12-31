@@ -34,12 +34,13 @@ public static class Dependencies
 
 	private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment)
 	{
-		var applicationPaths = configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>();
+		var developmentOrigin = configuration.GetValue<string>("DevelopmentOrigin");
+		var deploymentOrigin = configuration.GetValue<string>("DeploymentOrigin");
+		var origin = environment.IsDevelopment() ? developmentOrigin : deploymentOrigin;
+
 		services.AddHttpClient("RetryHttpClient", options =>
 		{
-			options.BaseAddress = new Uri(environment.IsDevelopment() 
-				? applicationPaths.DevelopmentOrigin 
-				: applicationPaths.DeploymentOrigin);
+			options.BaseAddress = new Uri(origin);
 			options.DefaultRequestHeaders.Add("Accept", "application/json");
 			options.Timeout = TimeSpan.FromMinutes(5);
 			options.DefaultRequestHeaders.ConnectionClose = true;
