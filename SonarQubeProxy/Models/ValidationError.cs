@@ -1,7 +1,7 @@
-﻿namespace SonarQubeProxy.Models;
-
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
+
+namespace SonarQubeProxy.Models;
 
 [ExcludeFromCodeCoverage]
 public sealed class ValidationError

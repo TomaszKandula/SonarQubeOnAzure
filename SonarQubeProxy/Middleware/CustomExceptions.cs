@@ -1,15 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using Newtonsoft.Json;
+using SonarQubeProxy.Exceptions;
+using SonarQubeProxy.Models;
+using SonarQubeProxy.Resources;
+
 namespace SonarQubeProxy.Middleware;
 
-using System;
-using System.Net;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using Models;
-using Exceptions;
-using Resources;
-    
 [ExcludeFromCodeCoverage]
 public class CustomExceptions
 {

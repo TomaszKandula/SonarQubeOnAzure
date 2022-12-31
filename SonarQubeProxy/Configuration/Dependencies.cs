@@ -1,15 +1,10 @@
-﻿using SonarQubeProxy.Services.HttpClientService.Abstractions;
+﻿using System.Diagnostics.CodeAnalysis;
+using SonarQubeProxy.Services.HttpClientService;
+using SonarQubeProxy.Services.HttpClientService.Abstractions;
+using SonarQubeProxy.Services.LoggerService;
+using SonarQubeProxy.Services.MetricsService;
 
 namespace SonarQubeProxy.Configuration;
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Services.LoggerService;
-using Services.MetricsService;
-using Services.HttpClientService;
 
 [ExcludeFromCodeCoverage]
 public static class Dependencies

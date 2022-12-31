@@ -1,11 +1,7 @@
-namespace SonarQubeProxy.Configuration;
-
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+
+namespace SonarQubeProxy.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class SwaggerSupport

@@ -1,12 +1,9 @@
-namespace SonarQubeProxy;
-
-using System;
-using System.IO;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Events;
+
+namespace SonarQubeProxy;
 
 [ExcludeFromCodeCoverage]
 public static class Program

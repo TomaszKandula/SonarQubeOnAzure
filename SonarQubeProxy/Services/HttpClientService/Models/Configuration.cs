@@ -1,8 +1,7 @@
-namespace SonarQubeProxy.Services.HttpClientService.Models;
-
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Abstractions;
+using SonarQubeProxy.Services.HttpClientService.Abstractions;
+
+namespace SonarQubeProxy.Services.HttpClientService.Models;
 
 [ExcludeFromCodeCoverage]
 public class Configuration

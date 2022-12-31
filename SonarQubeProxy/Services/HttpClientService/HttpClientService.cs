@@ -1,20 +1,15 @@
 using System.Net;
+using System.Text;
+using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SonarQubeProxy.Exceptions;
+using SonarQubeProxy.Resources;
+using SonarQubeProxy.Services.HttpClientService.Abstractions;
+using SonarQubeProxy.Services.HttpClientService.Models;
 using SonarQubeProxy.Services.LoggerService;
 
 namespace SonarQubeProxy.Services.HttpClientService;
-
-using System;
-using System.Text;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.WebUtilities;
-using Models;
-using Resources;
-using Exceptions;
-using Abstractions;
 
 public class HttpClientService : IHttpClientService
 {
@@ -34,7 +29,7 @@ public class HttpClientService : IHttpClientService
         _loggerService = loggerService;
     }
 
-    public async Task<ExecutionResult> Execute(Configuration configuration, CancellationToken cancellationToken = default)
+    public async Task<ExecutionResult> Execute(Models.Configuration configuration, CancellationToken cancellationToken = default)
     {
         VerifyConfigurationArgument(configuration);
 
@@ -55,7 +50,7 @@ public class HttpClientService : IHttpClientService
         throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
-    public async Task<T> Execute<T>(Configuration configuration, CancellationToken cancellationToken = default)
+    public async Task<T> Execute<T>(Models.Configuration configuration, CancellationToken cancellationToken = default)
     {
         VerifyConfigurationArgument(configuration);
 
@@ -94,7 +89,7 @@ public class HttpClientService : IHttpClientService
         }
     }
 
-    private async Task<HttpResponseMessage> GetResponse(Configuration configuration, CancellationToken cancellationToken = default)
+    private async Task<HttpResponseMessage> GetResponse(Models.Configuration configuration, CancellationToken cancellationToken = default)
     {
         var requestUri = configuration.Url;
         if (configuration.QueryParameters is not null && configuration.QueryParameters.Any())
@@ -166,7 +161,7 @@ public class HttpClientService : IHttpClientService
         throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
     }
 
-    private static void VerifyConfigurationArgument(Configuration configuration)
+    private static void VerifyConfigurationArgument(Models.Configuration configuration)
     {
         string message;
 

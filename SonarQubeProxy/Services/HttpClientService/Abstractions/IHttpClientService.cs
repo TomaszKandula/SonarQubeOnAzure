@@ -1,12 +1,10 @@
-namespace SonarQubeProxy.Services.HttpClientService.Abstractions;
+using SonarQubeProxy.Services.HttpClientService.Models;
 
-using System.Threading;
-using System.Threading.Tasks;
-using Models;
+namespace SonarQubeProxy.Services.HttpClientService.Abstractions;
 
 public interface IHttpClientService
 {
-    Task<ExecutionResult> Execute(Configuration configuration, CancellationToken cancellationToken = default);
+    Task<ExecutionResult> Execute(Models.Configuration configuration, CancellationToken cancellationToken = default);
 
-    Task<T> Execute<T>(Configuration configuration, CancellationToken cancellationToken = default);
+    Task<T> Execute<T>(Models.Configuration configuration, CancellationToken cancellationToken = default);
 }
