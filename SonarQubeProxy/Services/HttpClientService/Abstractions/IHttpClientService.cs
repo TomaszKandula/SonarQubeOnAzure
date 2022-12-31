@@ -1,4 +1,4 @@
-namespace SonarQubeProxy.Services.HttpClientService;
+namespace SonarQubeProxy.Services.HttpClientService.Abstractions;
 
 using System.Threading;
 using System.Threading.Tasks;

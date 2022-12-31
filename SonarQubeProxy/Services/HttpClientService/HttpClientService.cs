@@ -10,7 +10,6 @@ using Models;
 using Resources;
 using Exceptions;
 using Abstractions;
-using Authentication;
 
 public class HttpClientService : IHttpClientService
 {

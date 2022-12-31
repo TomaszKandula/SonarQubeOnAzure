@@ -1,4 +1,6 @@
-﻿namespace SonarQubeProxy.Configuration;
+﻿using SonarQubeProxy.Services.HttpClientService.Abstractions;
+
+namespace SonarQubeProxy.Configuration;
 
 using System;
 using System.Net.Http;
