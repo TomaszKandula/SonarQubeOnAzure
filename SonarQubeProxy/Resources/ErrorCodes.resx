@@ -126,4 +126,10 @@
   <data name="ARGUMENT_EMPTY_OR_NULL" xml:space="preserve">
     <value>Argument cannot be null or empty</value>
   </data>
+  <data name="HTTP_REQUEST_FAILED" xml:space="preserve">
+    <value>HTTP request has failed</value>
+  </data>
+  <data name="CANNOT_PARSE" xml:space="preserve">
+    <value>Cannot parse given content</value>
+  </data>
 </root>
