@@ -1,4 +1,4 @@
-namespace SonarQubeProxy.Services.HttpClientService.Authentication;
+namespace SonarQubeProxy.Services.HttpClientService.Models;
 
 using System.Diagnostics.CodeAnalysis;
 using Abstractions;
