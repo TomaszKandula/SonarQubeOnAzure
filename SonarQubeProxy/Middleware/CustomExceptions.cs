@@ -20,11 +20,11 @@ public class CustomExceptions
     /// <summary>
     /// Pre-defined application exceptions for status codes:
     /// <list>
-    ///   <item>400 - Bad Request</item>
-    ///   <item>401 - Unauthorized</item>
-    ///   <item>403 - Forbidden</item>
-    ///   <item>422 - Unprocessable Entity</item>
-    ///   <item>500 - Internal Server Error</item>
+    ///   <item>400 - Bad Request.</item>
+    ///   <item>401 - Unauthorized.</item>
+    ///   <item>403 - Forbidden.</item>
+    ///   <item>422 - Unprocessable Entity.</item>
+    ///   <item>500 - Internal Server Error.</item>
     /// </list>
     /// </summary>
     /// <param name="httpContext">Current HTTP context.</param>
