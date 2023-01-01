@@ -6,12 +6,8 @@ SonarQube server is available here: [Install the Server](https://docs.sonarqube.
 
 However, what about hosting SonarQube on Microsoft Azure Cloud? There are at least two possibilities, I tried both:
 
-1. Host SonarQube using Azure AppService (with Docker-Compose).
-2. Host SonarQube using Azure Virtual Machine (Linux in my case).
-
-Navigate to ___ for SonarQube on Azure AppService.
-
-Navigate to ___ for SonarQube on Azure VM.
+1. Host SonarQube using Azure AppService (with Docker-Compose), [navigate to the manual](https://github.com/TomaszKandula/SonarQubeOnAzure/tree/ref/project/SonarQubeAzureAppService).
+2. Host SonarQube using Azure Virtual Machine (Linux in my case), [navigate to the manual](https://github.com/TomaszKandula/SonarQubeOnAzure/tree/ref/project/SonarQubeAzureVM).
 
 ## Proxy API to SonarQube API
 
