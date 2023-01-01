@@ -28,6 +28,17 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Include="..\SonarQubeProxy.Configuration\appsettings.Development.json">
+            <Link>appsettings.Development.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\SonarQubeProxy.Configuration\appsettings.Production.json">
+            <Link>appsettings.Production.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
         <Compile Update="Resources\ErrorCodes.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
