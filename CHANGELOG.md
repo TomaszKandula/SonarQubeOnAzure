@@ -1,3 +1,18 @@
+# [1.5.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.4.0...v1.5.0) (2023-01-01)
+
+
+### Bug Fixes
+
+* add missing method to the interface ([3b7ec18](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/3b7ec184e7f550b7710c4108291e149fb32361ce))
+
+
+### Features
+
+* add new error codes ([6835982](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/683598245de370d5d847bb914b7bcaa65b81a2c2))
+* add new model ([e7c044a](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/e7c044a2d7c966cb1ddde9ac67e3dcac4ee33484))
+* register dependency ([063f973](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/063f973217ab4f9f83d34c2ca7d74d1810bfdef1))
+* reimplement metrics service ([8cf044d](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/8cf044d5522ca60d66596a575f6825d87ee6676a))
+
 # [1.4.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.3.0...v1.4.0) (2022-03-05)
 
 
