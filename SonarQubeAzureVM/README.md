@@ -16,7 +16,7 @@ Add Azure Virtual Machine to your newly created Azure Resource Group. I prefer C
 
 After creating VM: 
 
-1. Navigate to the VM resource group and select item with a type `Public IP address`, then navigate to `configuration` and setup domain name, so the ful address follows schema: `<YOUR_DOMAIN>.westeurope.cloudapp.azure.com`. We will use it in the configuration.
+1. Navigate to the VM resource group and select item with a type `Public IP address`, then navigate to `configuration` and setup domain name, so the ful address follows schema: `<YOUR_NAME>.westeurope.cloudapp.azure.com`. We will use it in the configuration.
 1. Log into it and setup root password: `sudo passwd root`.
 
 Once that is done, let's install unnecessary ingredients.
@@ -101,6 +101,8 @@ sonar.web.port=9000
 
 http.proxyHost=127.0.0.1
 http.proxyPort=80
+
+sonar.updatecenter.activate=false
 ```
 
 Our SonarQube installation will be working on all IP addresses associated with the server, accepting incoming HTTP on port 9000. Therefore, we will set proxy to our machine (127.0.0.1) on port 80 (for SonarQube web service).
@@ -117,28 +119,33 @@ sudo certbot --nginx
 
 Provide with the answers for all the questions from certbot. If everything is alright, then new certificate can be found at:
 
-Certificate should be saved:	`/etc/letsencrypt/live/<YOUR_DOMAIN>/fullchain.pem`
-Key should be saved:			`/etc/letsencrypt/live/<YOUR_DOMAIN>/privkey.pem`
+Certificate should be saved in the following location:
+
+`/etc/letsencrypt/live/<YOUR_DOMAIN>/fullchain.pem`
+
+Key should be saved in the following location:
+
+`/etc/letsencrypt/live/<YOUR_DOMAIN>/privkey.pem`
 
 Please note that `live` folder holds symlinks, the files are stored in `archive` folder.
 
 ### NGINX
 
-Let's copy SSL certification files to the NGINX:
+Now let's copy SSL certification files to the NGINX:
 
 ```
-sudo cp /etc/letsencrypt/archive/<DOMAIN>/fullchain.pem /opt/nginx/fullchain.pem
-sudo cp /etc/letsencrypt/archive/<DOMAIN>/privkey.pem /opt/nginx/privkey.pem
+sudo cp /etc/letsencrypt/archive/<YOUR_DOMAIN>/fullchain.pem /opt/nginx/fullchain.pem
+sudo cp /etc/letsencrypt/archive/<YOUR_DOMAIN>/privkey.pem /opt/nginx/privkey.pem
 ```
 
-Now create configuration file, execute:
+Now create configuration file, execute the following commands:
 
 ```
 sudo touch sonarqube.conf
 sudo nano sonarqube.conf
 ```
 
-Paste below code that will handle HTTP and HTTPS requests:
+Paste below code, it will handle both HTTP and HTTPS requests:
 
 ```
 server {
@@ -203,6 +210,8 @@ server {
 }
 ```
 
+If you do want to allow HTTPS only, remove server configuration for port 80.
+
 ### DOCKER-COMPOSE
 
 Navigate to `/opt/sonarqube` and create docker-compose file:
@@ -214,7 +223,7 @@ sudo nano docker-compose.yml
 
 We will use two components only latest NGINX and SonarQube 9.8:
 
-```
+```yaml
 version: "3"
 
 services:
@@ -240,7 +249,7 @@ services:
     networks:
       - sonarnet   
     ports:
-      - "9000:9001"
+      - 9000:9001
     volumes:
       - /opt/sonarqube/conf:/opt/sonarqube/conf:z
       - /opt/sonarqube/data:/opt/sonarqube/data:z
@@ -259,6 +268,8 @@ networks:
     driver: bridge
 ```
 
+If you do want to allow HTTPS only, similarly to the NGINX configuration, just remove reference to the port 80.
+
 Now we can run commands:
 
 ```
@@ -270,8 +281,10 @@ To look what is happening, execute:
 
 `sudo docker-compose logs`
 
-We should see NGINX and Sonarqube up and running with no errors. SonarQube should only prompt warning for admin account set to default `admin/admin` (scheme: login/password). Navigate to your domain and change your password.
+We should see NGINX and Sonarqube up and running with no errors. SonarQube should only show warning for admin account set to default `admin/admin` (scheme: login/password). Navigate to your domain and change your password.
 
 ## FINAL THOUGHTS
 
-Unlike installing SonarQube on an Azure AppService, installing on an Azure VM is much more work. However, in return we have much more control/flexibility over our installation.
+### Azure VM vs Azure AppService
+
+Unlike installing SonarQube on an Azure AppService, installing on an Azure VM is much more work. However, in return we have much more control/flexibility over our installation. Personally, I prefer running SonarQube on an Azure VM. The average monthly cost for plan `Standard B2s (2 vcpus, 4 GiB memory)` is around 30 US dollars per month.

@@ -7,17 +7,17 @@ SonarQube server is available here: [Install the Server](https://docs.sonarqube.
 However, what about hosting SonarQube on Microsoft Azure Cloud? There are at least two possibilities, I tried both:
 
 1. Host SonarQube using Azure AppService (with Docker-Compose), [navigate to the manual](./SonarQubeAzureAppService/README.md).
-2. Host SonarQube using Azure Virtual Machine (Linux in my case), [navigate to the manual](./SonarQubeAzureVM/README.md).
+1. Host SonarQube using Azure Virtual Machine (Linux, Nginx, Docker-Compose), [navigate to the manual](./SonarQubeAzureVM/README.md).
 
 ## Proxy API to SonarQube API
 
-Additionally, a [NET 6 application](./SonarQubeProxy) serves as a proxy to SonarQube API. Having _man-in-the-middle_ is to abstract away SonarQube API, so users do not have to query SonarQube API directly using the secret key in the request.
+Additionally, a [NET 6 application](./SonarQubeProxy.WebApi) serves as a proxy to SonarQube API. Having _man-in-the-middle_ is to abstract away SonarQube API, so users do not have to query SonarQube API directly using the secret key in the request.
 
 The web application requires Docker, and currently we deploy it to the Azure App Service via CI/CD. Production requires merging a code to the master branch. SonarQube code analysis is trigerred when a code is merged from the custom branch to the development branch (dev).
 
 There are two endpoints:
 1. GetMetrics - returns badge from SonarQube server for given project name and metric type. All badges have the same style.
-2. GetQualityGate - returns large quality gate badge from SonarQube server for given project name.
+1. GetQualityGate - returns large quality gate badge from SonarQube server for given project name.
 
 List of metric types:
 1. bugs
