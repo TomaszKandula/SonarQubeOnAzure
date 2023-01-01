@@ -55,7 +55,7 @@ jobs:
     - name: Variable substitution appsettings file for Production (.NET)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/SonarQubeProxy/appsettings.Production.json
+        files: ${{ github.workspace }}/SonarQubeProxy.Configuration/appsettings.Production.json
       env:
         SonarQube_Server: "${{ secrets.SONARQUBE_HOST }}"
         SonarQube_Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
