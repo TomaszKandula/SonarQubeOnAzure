@@ -19,4 +19,4 @@ ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "SonarQubeProxy.dll"]
+ENTRYPOINT ["dotnet", "SonarQubeProxy.WebApi.dll"]
