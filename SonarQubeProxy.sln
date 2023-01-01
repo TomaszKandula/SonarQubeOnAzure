@@ -45,6 +45,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{731161
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{A204AA34-6EFE-45C0-8623-54B4DA94EDA5}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQubeProxy.Configuration\appsettings.Development.json = SonarQubeProxy.Configuration\appsettings.Development.json
+		SonarQubeProxy.Configuration\appsettings.Production.json = SonarQubeProxy.Configuration\appsettings.Production.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
