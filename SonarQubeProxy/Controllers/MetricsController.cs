@@ -1,11 +1,9 @@
-namespace SonarQubeProxy.Controllers;
-
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using Services.MetricsService;
-using Models;
+using Microsoft.AspNetCore.Mvc;
+using SonarQubeProxy.Models;
+using SonarQubeProxy.Services.MetricsService;
+
+namespace SonarQubeProxy.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]

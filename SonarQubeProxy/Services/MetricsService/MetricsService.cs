@@ -1,34 +1,31 @@
-namespace SonarQubeProxy.Services.MetricsService;
-
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Mvc;
 using FluentValidation.Results;
-using Models;
-using Resources;
-using Exceptions;
-using LoggerService;
-using HttpClientService;
-using HttpClientService.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using SonarQubeProxy.Exceptions;
+using SonarQubeProxy.Resources;
+using SonarQubeProxy.Services.HttpClientService.Abstractions;
+using SonarQubeProxy.Services.HttpClientService.Models;
+using SonarQubeProxy.Services.LoggerService;
+using SonarQubeProxy.Services.MetricsService.Models;
+
+namespace SonarQubeProxy.Services.MetricsService;
 
 [ExcludeFromCodeCoverage]
 public class MetricsService : IMetricsService
 {
-    private readonly IHttpClientService _httpClientService;
+    private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 
     private readonly ILoggerService _loggerService;
 
-    private readonly SonarQube _sonarQube;
+    private readonly IConfiguration _configuration;
 
-    public MetricsService(IHttpClientService httpClientService, ILoggerService loggerService, SonarQube sonarQube)
+    public MetricsService(IHttpClientServiceFactory httpClientServiceFactory, ILoggerService loggerService, IConfiguration configuration)
     {
-        _httpClientService = httpClientService;
+        _httpClientServiceFactory = httpClientServiceFactory;
         _loggerService = loggerService;
-        _sonarQube = sonarQube;
+        _configuration = configuration;
     }
 
     public async Task<IActionResult> GetMetrics(string project, string metric)
@@ -39,8 +36,11 @@ public class MetricsService : IMetricsService
             [nameof(metric)] = metric
         });
 
-        var requestUrl = $"{_sonarQube.Server}/api/project_badges/measure?project={project}&metric={metric}";
-        return await ExecuteRequest(requestUrl);
+        var server = _configuration.GetValue<string>("SonarQube_Server");
+        var token = await GetProjectToken(project);
+        var requestUrl = $"{server}/api/project_badges/measure?project={project}&metric={metric}&token={token}";
+
+        return await GetProjectBadge(requestUrl);
     }
 
     public async Task<IActionResult> GetQualityGate(string project)
@@ -49,9 +49,12 @@ public class MetricsService : IMetricsService
         {
             [nameof(project)] = project
         });
-            
-        var requestUrl = $"{_sonarQube.Server}/api/project_badges/quality_gate?project={project}";
-        return await ExecuteRequest(requestUrl);
+
+        var server = _configuration.GetValue<string>("SonarQube_Server");
+        var token = await GetProjectToken(project);
+        var requestUrl = $"{server}/api/project_badges/quality_gate?project={project}&token={token}";
+
+        return await GetProjectBadge(requestUrl);
     }
 
     private static void ValidateArguments(IDictionary<string, string> properties)
@@ -74,30 +77,49 @@ public class MetricsService : IMetricsService
             throw new ValidationException(result, ErrorCodes.INVALID_ARGUMENT);
     }
 
-    private async Task<FileContentResult> ExecuteRequest(string requestUrl)
+    private async Task<string> GetProjectToken(string projectName)
     {
+        var server = _configuration.GetValue<string>("SonarQube_Server");
+        var token = _configuration.GetValue<string>("SonarQube_Token");
+        var url = $"{server}/api/project_badges/token?project={projectName}";
+
         var authentication = new BasicAuthentication
         {
-            Login = _sonarQube.Token, 
+            Login = token,
             Password = string.Empty
         };
 
-        var configuration = new Services.HttpClientService.Models.Configuration
+        var configuration = new HttpClientService.Models.Configuration
         {
-            Url = requestUrl, 
-            Method = "GET", 
+            Url = url, 
+            Method = "GET",
             Authentication = authentication
         };
 
-        var results = await _httpClientService.Execute(configuration);
-        if (results.StatusCode == HttpStatusCode.OK)
-            return new FileContentResult(results.Content!, results.ContentType?.MediaType!);
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        var result = await client.Execute<TokenResponse>(configuration);
+        return result.Token;
+    }
 
-        var message = results.Content is null 
+    private async Task<FileContentResult> GetProjectBadge(string requestUrl)
+    {
+        var configuration = new Services.HttpClientService.Models.Configuration
+        {
+            Url = requestUrl, 
+            Method = "GET"
+        };
+
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        var result = await client.Execute(configuration);
+
+        if (result.StatusCode == HttpStatusCode.OK)
+            return new FileContentResult(result.Content!, result.ContentType?.MediaType!);
+
+        var message = result.Content is null 
             ? ErrorCodes.ERROR_UNEXPECTED 
-            : Encoding.Default.GetString(results.Content);
+            : Encoding.Default.GetString(result.Content);
 
-        _loggerService.LogError($"Received null content with status code: {results.StatusCode}");
+        _loggerService.LogError($"Received null content with status code: {result.StatusCode}");
         throw new BusinessException(message);
     }
 }

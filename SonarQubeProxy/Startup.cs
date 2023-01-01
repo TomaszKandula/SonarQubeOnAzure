@@ -1,18 +1,13 @@
-namespace SonarQubeProxy;
-
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
-using Serilog;
-using Middleware;
-using Configuration;
-using Exceptions;
 using Newtonsoft.Json.Converters;
+using Serilog;
+using SonarQubeProxy.Configuration;
+using SonarQubeProxy.Exceptions;
+using SonarQubeProxy.Middleware;
+
+namespace SonarQubeProxy;
 
 [ExcludeFromCodeCoverage]
 public class Startup
