@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy.WebApi", "SonarQubeProxy.WebApi\SonarQubeProxy.WebApi.csproj", "{EF933057-890E-4D2D-89CD-526A8558B579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy.UnitTests", "Tests\SonarQubeProxy.UnitTests\SonarQubeProxy.UnitTests.csproj", "{633A61B9-7936-4F1E-94A5-57AF64DC3B17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy.UnitTests", "SonarQubeProxy.UnitTests\SonarQubeProxy.UnitTests.csproj", "{633A61B9-7936-4F1E-94A5-57AF64DC3B17}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Documentation", "{52CAA5AC-6094-4150-9E3E-B6C2B6D88E85}"
 	ProjectSection(SolutionItems) = preProject
