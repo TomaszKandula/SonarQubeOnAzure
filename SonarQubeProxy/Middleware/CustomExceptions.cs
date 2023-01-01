@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Newtonsoft.Json;
 using SonarQubeProxy.Exceptions;
-using SonarQubeProxy.Models;
+using SonarQubeProxy.Errors;
 using SonarQubeProxy.Resources;
 
 namespace SonarQubeProxy.Middleware;

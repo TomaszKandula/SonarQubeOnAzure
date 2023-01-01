@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using SonarQubeProxy.Models;
+using SonarQubeProxy.Errors;
 
 namespace SonarQubeProxy.Exceptions;
 

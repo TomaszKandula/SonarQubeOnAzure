@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SonarQubeProxy.Models;
+using SonarQubeProxy.Errors;
 using SonarQubeProxy.Services.MetricsService;
 
 namespace SonarQubeProxy.Controllers;
