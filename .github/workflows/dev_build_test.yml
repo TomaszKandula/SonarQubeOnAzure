@@ -22,15 +22,15 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Variable substitution appsettings file for Development (NET Core)
+    - name: Variable substitution appsettings file for Development (.NET)
       uses: microsoft/variable-substitution@v1
       with:
         files: ${{ github.workspace }}/SonarQubeProxy/appsettings.Development.json
       env:
-        SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
-        SonarQube.Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
-        ApplicationPaths.DevelopmentOrigin: "${{ secrets.APPLICATIONPATHS_DEVELOPMENTORIGIN }}"
-        ApplicationPaths.DeploymentOrigin: "${{ secrets.APPLICATIONPATHS_DEPLOYMENTORIGIN }}"
+        SonarQube_Server: "${{ secrets.SONARQUBE_HOST }}"
+        SonarQube_Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
+        DevelopmentOrigin: "${{ secrets.DEVELOPMENTORIGIN }}"
+        DeploymentOrigin: "${{ secrets.DEPLOYMENTORIGIN }}"
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
