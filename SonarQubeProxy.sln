@@ -4,6 +4,30 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy", "SonarQube
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy.UnitTests", "Tests\SonarQubeProxy.UnitTests\SonarQubeProxy.UnitTests.csproj", "{633A61B9-7936-4F1E-94A5-57AF64DC3B17}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{52CAA5AC-6094-4150-9E3E-B6C2B6D88E85}"
+	ProjectSection(SolutionItems) = preProject
+		General_README.md = README.md
+		AzureAppService_README.md = SonarQubeAzureAppService\README.md
+		AzureVM_README.md = SonarQubeAzureVM\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "General", "General", "{6797723F-3A72-4A12-AED4-0E956FDB2296}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		CHANGELOG.md = CHANGELOG.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureAppService", "AzureAppService", "{81899DF0-BBFD-47A9-B335-B24172A56930}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQubeAzureAppService\README.md = SonarQubeAzureAppService\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureVM", "AzureVM", "{AE3A934C-CDCA-4D65-AB5B-D6A0B85EF3E7}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQubeAzureVM\README.md = SonarQubeAzureVM\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +42,10 @@ Global
 		{633A61B9-7936-4F1E-94A5-57AF64DC3B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{633A61B9-7936-4F1E-94A5-57AF64DC3B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{633A61B9-7936-4F1E-94A5-57AF64DC3B17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6797723F-3A72-4A12-AED4-0E956FDB2296} = {52CAA5AC-6094-4150-9E3E-B6C2B6D88E85}
+		{81899DF0-BBFD-47A9-B335-B24172A56930} = {52CAA5AC-6094-4150-9E3E-B6C2B6D88E85}
+		{AE3A934C-CDCA-4D65-AB5B-D6A0B85EF3E7} = {52CAA5AC-6094-4150-9E3E-B6C2B6D88E85}
 	EndGlobalSection
 EndGlobal
