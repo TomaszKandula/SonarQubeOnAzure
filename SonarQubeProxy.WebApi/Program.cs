@@ -3,7 +3,7 @@ using Microsoft.AspNetCore;
 using Serilog;
 using Serilog.Events;
 
-namespace SonarQubeProxy;
+namespace SonarQubeProxy.WebApi;
 
 [ExcludeFromCodeCoverage]
 public static class Program

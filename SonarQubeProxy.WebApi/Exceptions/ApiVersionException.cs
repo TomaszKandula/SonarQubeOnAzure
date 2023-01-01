@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using SonarQubeProxy.Errors;
+using SonarQubeProxy.WebApi.Errors;
 
-namespace SonarQubeProxy.Exceptions;
+namespace SonarQubeProxy.WebApi.Exceptions;
 
 [ExcludeFromCodeCoverage]
 public class ApiVersionException : IErrorResponseProvider

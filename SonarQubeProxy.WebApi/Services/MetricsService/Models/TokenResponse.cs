@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace SonarQubeProxy.Services.MetricsService.Models;
+namespace SonarQubeProxy.WebApi.Services.MetricsService.Models;
 
 [ExcludeFromCodeCoverage]
 public class TokenResponse

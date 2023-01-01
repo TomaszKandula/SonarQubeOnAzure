@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SonarQubeProxy.Errors;
-using SonarQubeProxy.Services.MetricsService;
+using SonarQubeProxy.WebApi.Errors;
+using SonarQubeProxy.WebApi.Services.MetricsService;
 
-namespace SonarQubeProxy.Controllers;
+namespace SonarQubeProxy.WebApi.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]

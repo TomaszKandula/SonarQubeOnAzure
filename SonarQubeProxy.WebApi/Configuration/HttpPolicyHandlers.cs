@@ -3,7 +3,7 @@ using System.Net;
 using Polly;
 using Polly.Extensions.Http;
 
-namespace SonarQubeProxy.Configuration;
+namespace SonarQubeProxy.WebApi.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class HttpPolicyHandlers

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SonarQubeProxy.Resources {
+namespace SonarQubeProxy.WebApi.Resources {
     using System;
     
     

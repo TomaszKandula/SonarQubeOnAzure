@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
 
-namespace SonarQubeProxy.Configuration;
+namespace SonarQubeProxy.WebApi.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class SwaggerSupport

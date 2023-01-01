@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Serilog;
 
-namespace SonarQubeProxy.Services.LoggerService;
+namespace SonarQubeProxy.WebApi.Services.LoggerService;
 
 /// <summary>
 /// Logger service that allows to store messages from application.

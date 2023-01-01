@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Newtonsoft.Json;
-using SonarQubeProxy.Exceptions;
-using SonarQubeProxy.Errors;
-using SonarQubeProxy.Resources;
+using SonarQubeProxy.WebApi.Errors;
+using SonarQubeProxy.WebApi.Exceptions;
+using SonarQubeProxy.WebApi.Resources;
 
-namespace SonarQubeProxy.Middleware;
+namespace SonarQubeProxy.WebApi.Middleware;
 
 [ExcludeFromCodeCoverage]
 public class CustomExceptions

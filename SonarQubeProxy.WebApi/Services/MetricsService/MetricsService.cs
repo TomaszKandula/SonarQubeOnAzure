@@ -3,14 +3,14 @@ using System.Net;
 using System.Text;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using SonarQubeProxy.Exceptions;
-using SonarQubeProxy.Resources;
-using SonarQubeProxy.Services.HttpClientService.Abstractions;
-using SonarQubeProxy.Services.HttpClientService.Models;
-using SonarQubeProxy.Services.LoggerService;
-using SonarQubeProxy.Services.MetricsService.Models;
+using SonarQubeProxy.WebApi.Exceptions;
+using SonarQubeProxy.WebApi.Resources;
+using SonarQubeProxy.WebApi.Services.HttpClientService.Abstractions;
+using SonarQubeProxy.WebApi.Services.HttpClientService.Models;
+using SonarQubeProxy.WebApi.Services.LoggerService;
+using SonarQubeProxy.WebApi.Services.MetricsService.Models;
 
-namespace SonarQubeProxy.Services.MetricsService;
+namespace SonarQubeProxy.WebApi.Services.MetricsService;
 
 [ExcludeFromCodeCoverage]
 public class MetricsService : IMetricsService

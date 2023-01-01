@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using SonarQubeProxy.Services.HttpClientService.Abstractions;
+using SonarQubeProxy.WebApi.Services.HttpClientService.Abstractions;
 
-namespace SonarQubeProxy.Services.HttpClientService.Models;
+namespace SonarQubeProxy.WebApi.Services.HttpClientService.Models;
 
 [ExcludeFromCodeCoverage]
 public class ContentDictionary : IPayloadContent

@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Newtonsoft.Json.Converters;
 using Serilog;
-using SonarQubeProxy.Configuration;
-using SonarQubeProxy.Exceptions;
-using SonarQubeProxy.Middleware;
+using SonarQubeProxy.WebApi.Configuration;
+using SonarQubeProxy.WebApi.Exceptions;
+using SonarQubeProxy.WebApi.Middleware;
 
-namespace SonarQubeProxy;
+namespace SonarQubeProxy.WebApi;
 
 [ExcludeFromCodeCoverage]
 public class Startup

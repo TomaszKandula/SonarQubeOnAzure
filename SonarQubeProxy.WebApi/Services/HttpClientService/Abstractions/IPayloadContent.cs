@@ -1,3 +1,3 @@
-namespace SonarQubeProxy.Services.HttpClientService.Abstractions;
+namespace SonarQubeProxy.WebApi.Services.HttpClientService.Abstractions;
 
 public interface IPayloadContent { }

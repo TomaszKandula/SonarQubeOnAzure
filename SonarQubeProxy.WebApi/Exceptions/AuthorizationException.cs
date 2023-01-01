@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-namespace SonarQubeProxy.Exceptions;
+namespace SonarQubeProxy.WebApi.Exceptions;
 
 [ExcludeFromCodeCoverage]
 [Serializable]

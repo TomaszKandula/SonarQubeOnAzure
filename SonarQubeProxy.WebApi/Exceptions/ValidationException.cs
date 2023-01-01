@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using FluentValidation.Results;
 
-namespace SonarQubeProxy.Exceptions;
+namespace SonarQubeProxy.WebApi.Exceptions;
 
 [ExcludeFromCodeCoverage]
 [Serializable]

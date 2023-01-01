@@ -1,6 +1,6 @@
-using SonarQubeProxy.Services.HttpClientService.Models;
+using SonarQubeProxy.WebApi.Services.HttpClientService.Models;
 
-namespace SonarQubeProxy.Services.HttpClientService.Abstractions;
+namespace SonarQubeProxy.WebApi.Services.HttpClientService.Abstractions;
 
 public interface IHttpClientService
 {

@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Net.Http.Headers;
 
-namespace SonarQubeProxy.Middleware;
+namespace SonarQubeProxy.WebApi.Middleware;
 
 [ExcludeFromCodeCoverage]
 public class CacheControl

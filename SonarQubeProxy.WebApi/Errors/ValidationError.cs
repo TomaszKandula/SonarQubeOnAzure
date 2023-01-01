@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 
-namespace SonarQubeProxy.Errors;
+namespace SonarQubeProxy.WebApi.Errors;
 
 [ExcludeFromCodeCoverage]
 public sealed class ValidationError

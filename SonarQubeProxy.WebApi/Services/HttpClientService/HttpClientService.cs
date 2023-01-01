@@ -3,13 +3,13 @@ using System.Text;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using SonarQubeProxy.Exceptions;
-using SonarQubeProxy.Resources;
-using SonarQubeProxy.Services.HttpClientService.Abstractions;
-using SonarQubeProxy.Services.HttpClientService.Models;
-using SonarQubeProxy.Services.LoggerService;
+using SonarQubeProxy.WebApi.Exceptions;
+using SonarQubeProxy.WebApi.Resources;
+using SonarQubeProxy.WebApi.Services.HttpClientService.Abstractions;
+using SonarQubeProxy.WebApi.Services.HttpClientService.Models;
+using SonarQubeProxy.WebApi.Services.LoggerService;
 
-namespace SonarQubeProxy.Services.HttpClientService;
+namespace SonarQubeProxy.WebApi.Services.HttpClientService;
 
 public class HttpClientService : IHttpClientService
 {

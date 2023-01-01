@@ -1,6 +1,6 @@
-using SonarQubeProxy.Services.LoggerService;
+using SonarQubeProxy.WebApi.Services.LoggerService;
 
-namespace SonarQubeProxy.Services.HttpClientService.Abstractions;
+namespace SonarQubeProxy.WebApi.Services.HttpClientService.Abstractions;
 
 public interface IHttpClientServiceFactory
 {

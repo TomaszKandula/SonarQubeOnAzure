@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using Microsoft.AspNetCore.HttpOverrides;
 
-namespace SonarQubeProxy.Configuration;
+namespace SonarQubeProxy.WebApi.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class DockerSupport

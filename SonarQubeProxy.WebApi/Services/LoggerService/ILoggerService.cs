@@ -1,4 +1,4 @@
-﻿namespace SonarQubeProxy.Services.LoggerService;
+﻿namespace SonarQubeProxy.WebApi.Services.LoggerService;
 
 public interface ILoggerService
 {
