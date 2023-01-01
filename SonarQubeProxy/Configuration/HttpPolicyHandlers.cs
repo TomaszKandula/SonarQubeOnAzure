@@ -1,12 +1,9 @@
-namespace SonarQubeProxy.Configuration;
-
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
-using Polly.Extensions.Http;
+using System.Net;
 using Polly;
+using Polly.Extensions.Http;
+
+namespace SonarQubeProxy.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class HttpPolicyHandlers

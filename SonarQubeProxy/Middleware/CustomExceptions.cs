@@ -1,15 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using Newtonsoft.Json;
+using SonarQubeProxy.Exceptions;
+using SonarQubeProxy.Models;
+using SonarQubeProxy.Resources;
+
 namespace SonarQubeProxy.Middleware;
 
-using System;
-using System.Net;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using Models;
-using Exceptions;
-using Resources;
-    
 [ExcludeFromCodeCoverage]
 public class CustomExceptions
 {
@@ -20,11 +17,11 @@ public class CustomExceptions
     /// <summary>
     /// Pre-defined application exceptions for status codes:
     /// <list>
-    ///   <item>400 - Bad Request</item>
-    ///   <item>401 - Unauthorized</item>
-    ///   <item>403 - Forbidden</item>
-    ///   <item>422 - Unprocessable Entity</item>
-    ///   <item>500 - Internal Server Error</item>
+    ///   <item>400 - Bad Request.</item>
+    ///   <item>401 - Unauthorized.</item>
+    ///   <item>403 - Forbidden.</item>
+    ///   <item>422 - Unprocessable Entity.</item>
+    ///   <item>500 - Internal Server Error.</item>
     /// </list>
     /// </summary>
     /// <param name="httpContext">Current HTTP context.</param>

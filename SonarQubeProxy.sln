@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy", "SonarQubeProxy\SonarQubeProxy.csproj", "{EF933057-890E-4D2D-89CD-526A8558B579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy.IntegrationTests", "Tests\SonarQubeProxy.IntegrationTests\SonarQubeProxy.IntegrationTests.csproj", "{848246F2-9588-4008-8626-0458EB4D0CE5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonarQubeProxy.UnitTests", "Tests\SonarQubeProxy.UnitTests\SonarQubeProxy.UnitTests.csproj", "{633A61B9-7936-4F1E-94A5-57AF64DC3B17}"
 EndProject
 Global
@@ -16,10 +14,6 @@ Global
 		{EF933057-890E-4D2D-89CD-526A8558B579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF933057-890E-4D2D-89CD-526A8558B579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF933057-890E-4D2D-89CD-526A8558B579}.Release|Any CPU.Build.0 = Release|Any CPU
-		{848246F2-9588-4008-8626-0458EB4D0CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{848246F2-9588-4008-8626-0458EB4D0CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{848246F2-9588-4008-8626-0458EB4D0CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{848246F2-9588-4008-8626-0458EB4D0CE5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{633A61B9-7936-4F1E-94A5-57AF64DC3B17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{633A61B9-7936-4F1E-94A5-57AF64DC3B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{633A61B9-7936-4F1E-94A5-57AF64DC3B17}.Release|Any CPU.ActiveCfg = Release|Any CPU

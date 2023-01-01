@@ -1,21 +1,14 @@
-namespace SonarQubeProxy.Configuration;
-
-using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+
+namespace SonarQubeProxy.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class SwaggerSupport
 {
-    private const string ApiVersion = "v1";
+    private const string DocVersion = "v1";
 
-    private const string ApiName = "Tokan Pages API";
-
-    private const string AuthorizationScheme = "Bearer";
+    private const string ApiName = "SonarQube Proxy API";
 
     public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment? environment)
     {
@@ -24,35 +17,10 @@ public static class SwaggerSupport
 
         services.AddSwaggerGen(options =>
         {
-            options.SwaggerDoc(ApiVersion, new OpenApiInfo
+            options.SwaggerDoc(DocVersion, new OpenApiInfo
             {
                 Title = ApiName, 
-                Version = ApiVersion
-            });
-
-            options.AddSecurityDefinition(AuthorizationScheme, new OpenApiSecurityScheme
-            {
-                Name = "Authorization",
-                Description = "Please provide JWT",
-                BearerFormat = "JWT",
-                Scheme = AuthorizationScheme.ToLower(),
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.ApiKey
-            });
-
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference 
-                        {
-                            Id = AuthorizationScheme,
-                            Type = ReferenceType.SecurityScheme
-                        }
-                    },
-                    Array.Empty<string>()
-                }
+                Version = DocVersion
             });
         });
     }
@@ -62,12 +30,8 @@ public static class SwaggerSupport
         if (environment.IsProduction())
             return;
 
+        const string url = $"/swagger/{DocVersion}/swagger.json";
         builder.UseSwagger();
-        builder.UseSwaggerUI(options =>
-        {
-            options.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", ApiName);
-            options.OAuthAppName(ApiName);
-            options.OAuthClientSecret(configuration.GetSection("IdentityServer")["WebSecret"]);
-        });
+        builder.UseSwaggerUI(options => options.SwaggerEndpoint(url, ApiName));
     }
 }

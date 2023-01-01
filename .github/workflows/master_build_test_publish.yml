@@ -52,15 +52,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
     
-    - name: Variable substitution appsettings file for Development (NET Core)
+    - name: Variable substitution appsettings file for Production (.NET)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/SonarQubeProxy/appsettings.Development.json
+        files: ${{ github.workspace }}/SonarQubeProxy/appsettings.Production.json
       env:
-        SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
-        SonarQube.Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
-        ApplicationPaths.DevelopmentOrigin: "${{ secrets.APPLICATIONPATHS_DEVELOPMENTORIGIN }}"
-        ApplicationPaths.DeploymentOrigin: "${{ secrets.APPLICATIONPATHS_DEPLOYMENTORIGIN }}"
+        SonarQube_Server: "${{ secrets.SONARQUBE_HOST }}"
+        SonarQube_Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
+        DevelopmentOrigin: "${{ secrets.DEVELOPMENTORIGIN }}"
+        DeploymentOrigin: "${{ secrets.DEPLOYMENTORIGIN }}"
 
     - name: Production | Build Docker (prepare)
       uses: azure/docker-login@v1

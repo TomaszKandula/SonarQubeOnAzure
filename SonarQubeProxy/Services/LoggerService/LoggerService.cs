@@ -1,8 +1,8 @@
-﻿namespace SonarQubeProxy.Services.LoggerService;
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Serilog;
+
+namespace SonarQubeProxy.Services.LoggerService;
 
 /// <summary>
 /// Logger service that allows to store messages from application.

@@ -1,6 +1,6 @@
-namespace SonarQubeProxy.Services.HttpClientService.Models;
-
 using System.Net.Http.Headers;
+
+namespace SonarQubeProxy.Services.HttpClientService.Models;
 
 public class HttpContentResult
 {

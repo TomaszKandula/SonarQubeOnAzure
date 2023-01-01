@@ -1,11 +1,9 @@
-namespace SonarQubeProxy.Models;
-
 using System.Diagnostics.CodeAnalysis;
 
-[ExcludeFromCodeCoverage]
-public class SonarQube
-{
-    public string Server { get; set; } = ""; 
+namespace SonarQubeProxy.Services.MetricsService.Models;
 
+[ExcludeFromCodeCoverage]
+public class TokenResponse
+{
     public string Token { get; set; } = "";
 }

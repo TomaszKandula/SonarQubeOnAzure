@@ -1,7 +1,6 @@
-namespace SonarQubeProxy.Services.MetricsService;
-
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+
+namespace SonarQubeProxy.Services.MetricsService;
 
 public interface IMetricsService
 {
