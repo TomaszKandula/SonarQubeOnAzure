@@ -42,7 +42,7 @@ jobs:
 
     - name: SonarQube begin scan dotnet
       run: |
-        dotnet tool install --global dotnet-sonarscanner
+        dotnet tool install --global dotnet-sonarscanner --version 5.15.0
         dotnet tool update dotnet-reportgenerator-globaltool -g
         dotnet sonarscanner begin \
         /k:${{ secrets.SONARQUBE_PROJECT_KEY }} \
