@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.5.0...v1.6.0) (2024-02-02)
+
+
+### Bug Fixes
+
+* use explicitly version 5.15 ([e4b5841](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/e4b584138c36808375880256cdfda209f12ddcd5))
+
+
+### Features
+
+* upgrade deployment scripts ([4e7bdf0](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/4e7bdf0bf8ec3fe4b949fd1178b18f4c6517c05e))
+
 # [1.5.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.4.0...v1.5.0) (2023-01-01)
 
 
