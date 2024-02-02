@@ -17,12 +17,12 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v4
 
     - name: Semantic Release (install node.js)
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
-        node-version: 14
+        node-version: 18
 
     - name: Semantic Release (install dependencies)
       run: |
@@ -30,7 +30,7 @@ jobs:
         yarn install
 
     - name: Semantic Release (process changes)
-      uses: cycjimmy/semantic-release-action@v2
+      uses: cycjimmy/semantic-release-action@v3.1.2
       id: semantic
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
@@ -50,10 +50,10 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v4
     
     - name: Variable substitution appsettings file for Production (.NET)
-      uses: microsoft/variable-substitution@v1
+      uses: TomaszKandula/variable-substitution@v1.0.1
       with:
         files: ${{ github.workspace }}/SonarQubeProxy.Configuration/appsettings.Production.json
       env:
@@ -89,7 +89,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       if: needs.versioning.outputs.outputs2 == 'true'
       with:
-        app-name: tokansonar-proxy
+        app-name: tokansonar
         slot-name: production
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_BACKEND_PROD }}
         images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}

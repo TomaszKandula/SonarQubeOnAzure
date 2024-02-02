@@ -18,12 +18,12 @@ jobs:
     steps:
     
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     - name: Variable substitution appsettings file for Development (.NET)
-      uses: microsoft/variable-substitution@v1
+      uses: TomaszKandula/variable-substitution@v1.0.1
       with:
         files: ${{ github.workspace }}/SonarQubeProxy.Configuration/appsettings.Development.json
       env:
