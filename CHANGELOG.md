@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.6.0...v1.6.1) (2024-02-03)
+
+
+### Bug Fixes
+
+* correct base name ([6a8dca1](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/6a8dca1940cb1578872c7212981aa2edaa561595))
+
 # [1.6.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.5.0...v1.6.0) (2024-02-02)
 
 
