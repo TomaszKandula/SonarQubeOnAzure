@@ -30,7 +30,7 @@ jobs:
         yarn install
 
     - name: Semantic Release (process changes)
-      uses: cycjimmy/semantic-release-action@v3.1.2
+      uses: cycjimmy/semantic-release-action@v4.0.0
       id: semantic
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
@@ -59,6 +59,8 @@ jobs:
       env:
         SonarQube_Server: "${{ secrets.SONARQUBE_HOST }}"
         SonarQube_Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
+        AZ_Storage_ContainerName: "${{ secrets.STORAGE_CONTAINER_NAME }}"
+        AZ_Storage_ConnectionString: "${{ secrets.STORAGE_CONNECTION_STRING }}"
         DevelopmentOrigin: "${{ secrets.DEVELOPMENTORIGIN }}"
         DeploymentOrigin: "${{ secrets.DEPLOYMENTORIGIN }}"
 

@@ -29,6 +29,8 @@ jobs:
       env:
         SonarQube_Server: "${{ secrets.SONARQUBE_HOST }}"
         SonarQube_Token: "${{ secrets.SONARQUBE_CREDENTIAL }}"
+        AZ_Storage_ContainerName: "${{ secrets.STORAGE_CONTAINER_NAME }}"
+        AZ_Storage_ConnectionString: "${{ secrets.STORAGE_CONNECTION_STRING }}"
         DevelopmentOrigin: "${{ secrets.DEVELOPMENTORIGIN }}"
         DeploymentOrigin: "${{ secrets.DEPLOYMENTORIGIN }}"
 
