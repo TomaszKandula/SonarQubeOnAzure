@@ -1,41 +1,32 @@
+using Logger = SonarQubeProxy.WebApi.Configuration.Logger;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore;
 using Serilog;
-using Serilog.Events;
 
 namespace SonarQubeProxy.WebApi;
 
+/// <summary>
+/// .NET6 program.
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class Program
 {
     private static readonly string EnvironmentValue 
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
 
-    private const string LogTemplate 
-        = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
-
-    public static int Main(string[] args)
+    /// <summary>
+    /// Main entry point
+    /// </summary>
+    /// <returns>Returns '1' on exception</returns>
+    public static int Main()
     {
         try
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
-                .WriteTo.File(
-                    GetLogPathFile(),
-                    outputTemplate: LogTemplate,
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true,
-                    retainedFileCountLimit: null,
-                    shared: false
-                ).CreateLogger();
-
-            Log.Information("Starting WebHost...");
-            Log.Information("Environment: {Environment}", EnvironmentValue);
-
-            CreateWebHostBuilder(args)
+            var configuration = GetConfiguration();
+            const string fileName = @"logs/SonarQubeProxy.WebApi/{yyyy}{MM}{dd}.txt";
+            Log.Logger = Logger.Configuration.GetLogger(configuration, fileName);
+            Log.Information("Starting WebHost... Environment: {Environment}", EnvironmentValue);
+            CreateWebHostBuilder(configuration)
                 .Build()
                 .Run();
 
@@ -52,19 +43,21 @@ public static class Program
         }
     }
 
-    private static string GetLogPathFile()
+    private static IConfigurationRoot GetConfiguration()
     {
-        var pathFolder = $"{AppDomain.CurrentDomain.BaseDirectory}logs";
-
-        if (!Directory.Exists(pathFolder)) 
-            Directory.CreateDirectory(pathFolder);
-
-        return $"{pathFolder}{Path.DirectorySeparatorChar}log-.txt";
+        var appSettingsEnv = $"appsettings.{EnvironmentValue}.json";
+        return new ConfigurationBuilder()
+            .AddJsonFile(appSettingsEnv, true, true)
+            .AddUserSecrets<Startup>(true)
+            .AddEnvironmentVariables()
+            .Build();
     }
 
-    private static IWebHostBuilder CreateWebHostBuilder(string[] args)
+    private static IWebHostBuilder CreateWebHostBuilder(IConfigurationRoot configurationRoot)
     {
-        return WebHost.CreateDefaultBuilder(args)
+        return WebHost.CreateDefaultBuilder()
+            .ConfigureAppConfiguration(builder => builder.AddConfiguration(configurationRoot))
+            .ConfigureKestrel(options => options.AddServerHeader = false)
             .UseStartup<Startup>()
             .UseSerilog();
     }
