@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.6.1...v1.7.0) (2024-02-03)
+
+
+### Features
+
+* save logs into azure storage ([1daa843](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/1daa84344b04b875fc671493cc439aad7c9d4a35))
+* upgrade version ([0c17245](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/0c172453f1796a3d74922cd8a67ffd29c196f3fc))
+
 ## [1.6.1](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.6.0...v1.6.1) (2024-02-03)
 
 
