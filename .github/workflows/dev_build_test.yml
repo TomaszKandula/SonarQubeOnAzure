@@ -35,7 +35,7 @@ jobs:
         DeploymentOrigin: "${{ secrets.DEPLOYMENTORIGIN }}"
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '6.0.x'
 
