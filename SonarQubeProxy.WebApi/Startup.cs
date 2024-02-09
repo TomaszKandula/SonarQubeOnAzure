@@ -47,11 +47,13 @@ public class Startup
         builder.UseMiddleware<CacheControl>();
         builder.UseResponseCompression();
         builder.UseRouting();
-
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapGet("/", context => context.Response.WriteAsync("SonarQube Proxy API"));
+            endpoints.MapGet("/", context 
+                => context.Response.WriteAsync("SonarQube Proxy API"));
+            endpoints.MapGet("/hc/ready", context 
+                => context.Response.WriteAsync("{\"status\": \"live\"}"));
         });
 
         builder.SetupSwaggerUi(_configuration, _environment);
