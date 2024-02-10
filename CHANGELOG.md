@@ -1,3 +1,13 @@
+# [1.8.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.7.0...v1.8.0) (2024-02-10)
+
+
+### Features
+
+* add HC ready ([a323288](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/a323288b1e0392e26d1cf4cc00d16c9f7977a495))
+* add HC, check storage and sonar server ([ac7f1a2](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/ac7f1a2b4f5232ae7569baeade95a5ab495179a7))
+* do not use 'set-output' ([84310df](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/84310dfd0931d81526634dc3e35087c3857bc880))
+* do not use 'set-output' ([63e813b](https://github.com/TomaszKandula/SonarQubeOnAzure/commit/63e813b3790bbd3ca89f6c1fc865f300ed783eea))
+
 # [1.7.0](https://github.com/TomaszKandula/SonarQubeOnAzure/compare/v1.6.1...v1.7.0) (2024-02-03)
 
 
