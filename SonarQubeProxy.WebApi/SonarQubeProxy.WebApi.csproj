@@ -26,6 +26,8 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.1" />
+        <PackageReference Include="AspNetCore.HealthChecks.AzureStorage" Version="7.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
